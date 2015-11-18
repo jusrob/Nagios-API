@@ -18,16 +18,35 @@ func createConfigFile(filepath string, content string) {
   file.Sync()
 }
 
-func buildHostConfigFile(host string) string{
-  content := `define host{
-              use linux-server
-              host_name ` + host + `
-              }`
+func buildConfigFile(host string, fileType string, config map[string]string) string{
+  content := "define " + fileType + "{\n"
+  for key, value := range config {
+    content += "\t" + key + ": " + value + "\n"
+  }
+  content += "}"
+
   return content
 }
 
-func main() {
-  c := buildHostConfigFile("cl2570.appl.ge.com")
-  createConfigFile("/Users/justinroberts/Documents/scripts/GO/test.txt",c)
+func createLinuxHost(host string) {
+  hostConfig := map[string]string{
+    "use": "linux-server",
+    "host_name": host,
+  }
+  totalProcessesConfig := map[string]string {
+    "use": "generic-service",
+    "host_name": host,
+    "service_description": "Total Processes",
+    "check_command": "check_nrpe!check_total_procs",
+  }
+
+  hostFile := buildConfigFile(host, "host", hostConfig)
+  totalProcessesFile := buildConfigFile(host, "service", totalProcessesConfig)
+
+  createConfigFile("/Users/justinroberts/tmp/host.cfg", hostFile)
+  createConfigFile("/Users/justinroberts/tmp/totalProcesses.cfg", totalProcessesFile)
 }
 
+func main() {
+  createLinuxHost("cl2750.appl.ge.com")
+}
