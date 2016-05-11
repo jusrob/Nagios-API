@@ -62,7 +62,7 @@
 
 ##### POST example:
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"hostname": "test.example.com","hostgroups": "all,production,p10","ip": "1.1.1.1","service1": {"check_command": "check_nrpe!check_zombie_procs", "service_description": "procs in zombie", "use": "generic-service"},"service2": {"check_command": "check_nrpe!check_load","service_description": "loade","use": "generic-service"}}' http://<host>:8080/new
+curl -H "Content-Type: application/json" -X POST -d '{"hostname": "test.example.com","hostgroups": "all,production,p10","ip": "1.1.1.1","service1": {"check_command": "check_nrpe!check_zombie_procs", "service_description": "procs in zombie", "use": "generic-service"},"service2": {"check_command": "check_nrpe!check_load","service_description": "load","use": "generic-service"}}' http://<host>:8080/new
 ```
 
 ### DELETE
