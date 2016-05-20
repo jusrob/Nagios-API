@@ -17,52 +17,45 @@
 	"hostname": "test.example.com",
 	"hostgroups": "all,production,p10",
 	"ip": "1.1.1.1",
-	"service1": {
+	"services": [{
 		"check_command": "check_nrpe!check_zombie_procs",
 		"service_description": "procs in zombie",
 		"use": "generic-service"
-	},
-  "service2": {
-    "check_command": "check_nrpe!check_load",
-    "service_description": "load",
-    "use": "generic-service"
-  },
-  "service3": {
-    "check_command": "check_nrpe!check_iowait_procs",
-    "service_description": "procs in iowait",
-    "use": "generic-service"
-  },
-  "service4": {
-    "check_command": "check_nrpe!check_disk_boot",
-    "service_description": "disk utilization boot",
-    "use": "generic-service"
-  },
-  "service5": {
-    "check_command": "check_nrpe!check_disk_root",
-    "service_description": "disk utilization root",
-    "use": "generic-service"
-  },
-  "service6": {
-    "check_command": "check_nrpe!check_mem",
-    "service_description": "memory utilizationt",
-    "use": "generic-service"
-  },
-  "service7": {
-    "check_command": "check_nrpe!check_swap",
-    "service_description": "swap utilization",
-    "use": "generic-service"
-  },
-  "service8": {
-    "check_command": "check_nrpe!check_total_proc",
-    "service_description": "total procs",
-    "use": "generic-service"
-  },
+	}, {
+		"check_command": "check_nrpe!check_load",
+		"service_description": "load",
+		"use": "generic-service"
+	}, {
+		"check_command": "check_nrpe!check_iowait_procs",
+		"service_description": "procs in iowait",
+		"use": "generic-service"
+	}, {
+		"check_command": "check_nrpe!check_disk_boot",
+		"service_description": "disk utilization boot",
+		"use": "generic-service"
+	}, {
+		"check_command": "check_nrpe!check_disk_root",
+		"service_description": "disk utilization root",
+		"use": "generic-service"
+	}, {
+		"check_command": "check_nrpe!check_mem",
+		"service_description": "memory utilizationt",
+		"use": "generic-service"
+	}, {
+		"check_command": "check_nrpe!check_swap",
+		"service_description": "swap utilization",
+		"use": "generic-service"
+	}, {
+		"check_command": "check_nrpe!check_total_proc",
+		"service_description": "total procs",
+		"use": "generic-service"
+	}]
 }
 ```
 
 ##### POST example:
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"hostname": "test.example.com","hostgroups": "all,production,p10","ip": "1.1.1.1","service1": {"check_command": "check_nrpe!check_zombie_procs", "service_description": "procs in zombie", "use": "generic-service"},"service2": {"check_command": "check_nrpe!check_load","service_description": "load","use": "generic-service"}}' http://<host>:8080/new
+curl -H "Content-Type: application/json" -X POST -d '{"hostname": "test.example.com","hostgroups": "all,production,p10","ip": "1.1.1.1","services": [{"check_command": "check_nrpe!check_zombie_procs","service_description": "procs in zombie","use": "generic-service"}, {"check_command": "check_nrpe!check_load","service_description": "load","use": "gceneric-service"}]}' http://<host>:8080/new
 ```
 
 ### DELETE
